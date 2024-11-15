@@ -1,0 +1,16 @@
+{% extends 'events/base.html' %}
+{% block content %}
+    <h1>Upcoming Events</h1>
+    <a href="{% url 'event_create' %}" class="btn btn-primary mb-3">Add New Event</a>
+    <ul class="list-group">
+        {% for event in events %}
+            <li class="list-group-item">
+                <a href="{% url 'event_detail' event.pk %}">{{ event.title }}</a>
+                <span class="float-end">
+                    <a href="{% url 'event_update' event.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="{% url 'event_delete' event.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                </span>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

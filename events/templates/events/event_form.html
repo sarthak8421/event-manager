@@ -1,0 +1,28 @@
+{% extends 'events/base.html' %}
+{% block content %}
+    <h1>{% if event %}Edit{% else %}Add{% endif %} Event</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" name="title" id="title" value="{{ event.title|default_if_none:'' }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" name="description" id="description" required>{{ event.description|default_if_none:'' }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" class="form-control" name="date" id="date" value="{{ event.date|default_if_none:'' }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="time" class="form-label">Time</label>
+            <input type="time" class="form-control" name="time" id="time" value="{{ event.time|default_if_none:'' }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" class="form-control" name="location" id="location" value="{{ event.location|default_if_none:'' }}" required>
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+    </form>
+{% endblock %}
